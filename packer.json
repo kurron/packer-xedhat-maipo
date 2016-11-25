@@ -1,20 +1,19 @@
 {
-    "description": "Builds an Ubuntu 16.04 Desktop box with various software development tools installed",
+    "description": "Builds an Red Hat Enterprise Linux 7 Desktop box with various software development tools installed",
     "min_packer_version": "0.12.0",
 
     "variables": {
         "ssh_name": "vagrant",
         "ssh_pass": "vagrant",
-        "hostname": "xenial-xubuntu",
-        "version": "5.1.10",
+        "hostname": "maipo-xedhat",
+        "version": "5.1.8",
         "comment": "Upgrade to VirtualBox 5.1.10",
         "home": "{{env `HOME`}}",
-        "bare-version": "5.1.10"
+        "bare-version": "5.1.8"
     },
 
     "builders": [{
-        "boot_command" : [
-        ],
+        "boot_command" : [],
         "boot_wait": "10s",
         "floppy_files": [],
         "format": "ova",
@@ -26,7 +25,7 @@
         "http_port_min" : 8000,
         "output_directory": "output-virtualbox-iso",
         "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
-        "source_path": "{{ user `home` }}/.vagrant.d/boxes/xenial-server-bare-VAGRANTSLASH-{{ user `bare-version` }}/0/virtualbox/box.ovf",
+        "source_path": "{{ user `home` }}/.vagrant.d/boxes/maipo-server-bare-VAGRANTSLASH-{{ user `bare-version` }}/0/virtualbox/box.ovf",
         "ssh_password": "{{user `ssh_pass`}}",
         "ssh_port": 22,
         "ssh_username": "{{user `ssh_name`}}",
@@ -40,7 +39,7 @@
 		        ["modifyvm", "{{.Name}}", "--clipboard", "bidirectional"]
 	      ],
         "vboxmanage_post": [],
-        "vm_name": "xenial-xubuntu"
+        "vm_name": "maipo-xedhat"
     }],
     "provisioners": [
         {
@@ -66,12 +65,12 @@
              "compression_level": 9,
              "include": [],
              "keep_input_artifact": false,
-             "output": "vagrant/xenial-xubuntu.box",
+             "output": "vagrant/maipo-xedhat.box",
              "type": "vagrant"
         },
         {
             "type": "atlas",
-            "artifact": "kurron/xenial-xubuntu",
+            "artifact": "kurron/maipo-xedhat",
             "artifact_type": "vagrant.box",
             "metadata": {
                 "provider": "virtualbox",

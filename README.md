@@ -1,5 +1,5 @@
 # Overview
-This project creates an Ubuntu 16.04 box with Xfce and various software development
+This project creates an Red Hat Enterprise Linux box with Xfce and various software development
 tools installed.
 
 # Prerequisites
@@ -10,8 +10,8 @@ tools installed.
 Type `./build.sh` to build the server box.
 
 # Installation
-The scripts will automatically install the newly built boxes into Vagrant's cache
-and publish them to Hashicorp's Atlas.
+The scripts will automatically install the newly built box into Vagrant's cache
+and publish it to Hashicorp's Atlas.
 
 # Tips and Tricks
 

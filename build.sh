@@ -5,5 +5,5 @@ export PACKER_LOG=activate
 
 packer validate packer.json
 packer build --force packer.json
-vagrant box add --clean --force --name xenial-xubuntu/5.1.10 vagrant/xenial-xubuntu.box
+vagrant box add --clean --force --name maipo-xedhat vagrant/maipo-xedhat.box
 vagrant box list

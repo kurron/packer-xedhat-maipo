@@ -4,16 +4,26 @@
 
   pre_tasks:
       - name: Install Desktop
-        package:
-            name: "xubuntu-core"
+        yum:
+            name: "{{ item }}"
             state: present
+        become: yes
+        with_items:
+            - "@x11"
+            - "@Xfce"
+            - "@internet-browser"
+      - name: Switch To Graphical Desktop
+        command: systemctl isolate graphical.target
+        become: yes
+      - name: Make Graphical Desktop The Default
+        command: systemctl set-default graphical.target
         become: yes
 
   roles:
       - kurron.logfaces
       - kurron.atlassian
       - kurron.aws
-      - kurron.docker-host
+      - { role: kurron.docker-host, docker_engine_storage_driver: overlay }
       - kurron.hashicorp
       - kurron.javascript-developer
       - kurron.jvm-developer
@@ -23,7 +33,9 @@
       - kurron.sql-developer
 
   post_tasks:
-      - name: Clear out Downloads
+      - name: Clear Out Downloads
         shell: "rm -f {{ansible_user_dir}}/Downloads/*.*"
+      - name: Clear Out Guest Additions
+        shell: "rm -f {{ansible_user_dir}}/*.iso"
       - name: Erase downloaded archive files
-        shell: "apt-get -y clean"
+        shell: "yum clean all"
