@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  gather_facts: yes
+
+  pre_tasks:
+      - name: Install Desktop
+        package:
+            name: "xubuntu-core"
+            state: present
+        become: yes
+
+  roles:
+      - kurron.logfaces
+      - kurron.atlassian
+      - kurron.aws
+      - kurron.docker-host
+      - kurron.hashicorp
+      - kurron.javascript-developer
+      - kurron.jvm-developer
+      - { role: kurron.operations, operations_loggly_install: false, operations_datadog_install: false }
+      - kurron.python-developer
+      - kurron.software-developer
+      - kurron.sql-developer
+
+  post_tasks:
+      - name: Clear out Downloads
+        shell: "rm -f {{ansible_user_dir}}/Downloads/*.*"
+      - name: Erase downloaded archive files
+        shell: "apt-get -y clean"
