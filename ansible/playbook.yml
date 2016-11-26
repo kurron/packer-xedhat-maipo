@@ -33,6 +33,20 @@
       - kurron.sql-developer
 
   post_tasks:
+      - name: Determine VirtualBox Version
+        command: "cat {{ansible_user_dir}}/.vbox_version"
+        register: vbox_version
+      - name: Soft-link Guest Additions ISO
+        command: "ln -s {{ansible_user_dir}}/VBoxGuestAdditions_{{ vbox_version.stdout }}.iso /tmp/VBoxGuestAdditions_{{ vbox_version.stdout }}.iso"
+      - name: Mount Guest Additions
+        command: "mount -o loop /tmp/VBoxGuestAdditions_{{ vbox_version.stdout }}.iso /mnt"
+        become: yes
+      - name: Install Guest Additions
+        command: "/mnt/VBoxLinuxAdditions.run"
+        become: yes
+      - name: Unmount Guest Additions
+        command: "umount /mnt"
+        become: yes
       - name: Clear Out Downloads
         shell: "rm -f {{ansible_user_dir}}/Downloads/*.*"
       - name: Clear Out Guest Additions
