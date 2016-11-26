@@ -6,10 +6,9 @@
         "ssh_name": "vagrant",
         "ssh_pass": "vagrant",
         "hostname": "maipo-xedhat",
-        "version": "5.1.8",
+        "version": "5.1.9",
         "comment": "Upgrade to VirtualBox 5.1.10",
-        "home": "{{env `HOME`}}",
-        "bare-version": "5.1.8"
+        "home": "{{env `HOME`}}"
     },
 
     "builders": [{
@@ -25,7 +24,7 @@
         "http_port_min" : 8000,
         "output_directory": "output-virtualbox-iso",
         "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
-        "source_path": "{{ user `home` }}/.vagrant.d/boxes/maipo-server-bare-VAGRANTSLASH-{{ user `bare-version` }}/0/virtualbox/box.ovf",
+        "source_path": "{{ user `home` }}/.vagrant.d/boxes/maipo-server-bare/0/virtualbox/box.ovf",
         "ssh_password": "{{user `ssh_pass`}}",
         "ssh_port": 22,
         "ssh_username": "{{user `ssh_name`}}",
