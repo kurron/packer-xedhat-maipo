@@ -12,6 +12,7 @@
             - "@x11"
             - "@Xfce"
             - "@internet-browser"
+            - "chromium"
       - name: Switch To Graphical Desktop
         command: systemctl isolate graphical.target
         become: yes
