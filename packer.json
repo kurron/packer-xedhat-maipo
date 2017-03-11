@@ -1,13 +1,13 @@
 {
     "description": "Builds an Red Hat Enterprise Linux 7 Desktop box with various software development tools installed",
-    "min_packer_version": "0.12.2",
+    "min_packer_version": "0.12.3",
 
     "variables": {
         "ssh_name": "vagrant",
         "ssh_pass": "vagrant",
         "hostname": "maipo-xedhat",
-        "version": "5.1.14",
-        "comment": "Upgrade to VirtualBox 5.1.14",
+        "version": "5.1.16",
+        "comment": "Upgrade to VirtualBox 5.1.16",
         "home": "{{env `HOME`}}"
     },
 
